@@ -9,6 +9,7 @@ import 'vue-slider-component/theme/default.css'
 import './assets/styles/main.scss'
 
 Vue.component('VueSlider', VueSlider)
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

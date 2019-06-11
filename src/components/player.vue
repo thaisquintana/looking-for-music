@@ -2,12 +2,12 @@
   <div class="player">
       <div class="current">
         <img
-            src=""
-            alt=""
+            src="https://267557-830227-raikfcquaxqncofqfm.stackpathdns.com/wp-content/uploads/2018/09/curiosidades-que-voce-precisa-saber-sobre-o-blink-182-667x400.jpg"
+            alt="Blink 182"
           />
           <div>
-            <span>titulo da musica</span>
-            <small>autor da musica</small>
+            <span>All The Small Thinhs</span>
+            <small>Blink</small>
           </div>
       </div>
       <div class="progress">
@@ -18,9 +18,9 @@
           <button>
             <img src="../assets/images/backward.svg" alt="Backward"/>
           </button>
-          <button>
+          <!-- <button>
             <img src="../assets/images/pause.svg" alt="Pause"/>
-          </button>
+          </button> -->
           <button>
             <img src="../assets/images/play.svg" alt="Play"/>
           </button>

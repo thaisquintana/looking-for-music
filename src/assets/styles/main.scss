@@ -53,3 +53,17 @@ button {
   background-position: top;
   padding: 0 20px;
 }
+
+@media only screen and (min-width: 1000px) {
+  .router-link-active {
+    &::before {
+      content: ('|');
+      color: #1db854;
+      font-weight: 700;
+      position: relative;
+      left: -25px;
+      top: -1px;
+      font-size: 0.9rem;
+    }
+  }
+}
