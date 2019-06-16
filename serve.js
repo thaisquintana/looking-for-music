@@ -1,46 +1,12 @@
-let express = require('express')
-let request = require('request')
-let querystring = require('querystring')
+const express = require('express')
+const serveStatic = require ('serve-static')
+const path = require('path')
 
-let app = express()
+const app = express()
 
-let redirect_uri =
-  process.env.REDIRECT_URI ||
-  'http://localhost:9000/callback'
+app.use('/', serveStatic(path.join(__dirname, 'dist')))
 
-app.get('/login', function(req, res) {
-  res.redirect('https://accounts.spotify.com/authorize?' +
-    querystring.stringify({
-      response_type: 'code',
-      client_id: process.env.SPOTIFY_CLIENT_ID,
-      scope: 'user-read-private user-read-email user-follow-read playlist-read-private',
-      redirect_uri
-    }))
-})
-
-app.get('/callback', function(req, res) {
-  let code = req.query.code || null
-  let authOptions = {
-    url: 'https://accounts.spotify.com/api/token',
-    form: {
-      code: code,
-      redirect_uri,
-      grant_type: 'authorization_code'
-    },
-    headers: {
-      'Authorization': 'Basic ' + (new Buffer(
-        process.env.SPOTIFY_CLIENT_ID + ':' + process.env.SPOTIFY_CLIENT_SECRET
-      ).toString('base64'))
-    },
-    json: true
-  }
-  request.post(authOptions, function(error, response, body) {
-    var access_token = body.access_token
-    let uri = process.env.FRONTEND_URI || 'http://localhost:8080'
-    res.redirect(uri + '?access_token=' + access_token)
-  })
-})
-
-let port = process.env.PORT || 9000
-console.log(`Listening on port ${port}. Go /login to initiate authentication flow.`)
+const port = process.env.PORT || 8080
 app.listen(port)
+
+console.log('Listening on port:', + port)
