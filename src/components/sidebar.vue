@@ -4,6 +4,9 @@
       <div class="main-navegation">
         <ul class="main-explorer">
           <li>
+            <a>Home</a>
+          </li>
+          <li>
             <a>Navegar</a>
           </li>
           <li>
@@ -24,7 +27,7 @@
             <router-link :to="{ path: '/songs' }">Músicas</router-link>
           </li>
           <li>
-            <router-link :to="{ path: '/albums' }">Albúns</router-link>
+            <router-link :to="{ path: '/albums' }">Álbuns</router-link>
           </li>
           <li>
             <router-link :to="{ path: '/' }">Artistas</router-link>
@@ -51,10 +54,10 @@
           </li>
         </ul>
       </div>
-        <button>
-          <img src="../assets/images/add_playlist.svg" alt="Adicionar Playlist" />
-          <label>Nova Playlist</label>
-        </button>
+      <button>
+        <img src="../assets/images/add_playlist.svg" alt="Adicionar Playlist">
+        <label>Nova Playlist</label>
+      </button>
     </aside>
     <section>
       <router-link :to="{ path: '/songs' }">Músicas</router-link>
@@ -66,6 +69,6 @@
 
 <script>
 export default {
-  name: 'sidebar'
-}
+  name: "sidebar"
+};
 </script>

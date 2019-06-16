@@ -4,6 +4,7 @@ import Vue from 'vue'
 import VueSlider from 'vue-slider-component'
 import App from './App'
 import router from './router'
+import store from './store/store'
 
 import 'vue-slider-component/theme/default.css'
 import './assets/styles/main.scss'
@@ -16,6 +17,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

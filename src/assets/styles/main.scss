@@ -114,7 +114,7 @@ section {
       width: 6.8%;
       left: 34px;
       height: 17px;
-      background-color: #B3B3B3;
+      background-color: #b3b3b3;
       mask-repeat: no-repeat;
     }
     .close-icon {
@@ -138,7 +138,8 @@ section {
       font-size: 1rem;
       color: #757575;
 
-      &:focus, &:active {
+      &:focus,
+      &:active {
         background-color: #404040;
       }
 
@@ -297,7 +298,7 @@ section {
         padding: 0 10px;
         line-height: 40px;
         background: #282828;
-        color: #1ED760;
+        color: #1ed760;
 
         &:first-child {
           width: 80px;
@@ -317,7 +318,7 @@ section {
 }
 
 @media only screen and (min-width: 1000px) {
-  .router-link-active {
+  .router-link-exact-active {
     &::before {
       content: ('|');
       color: #1db854;
@@ -328,6 +329,7 @@ section {
       font-size: 0.9rem;
     }
   }
+
   section {
     display: none;
   }
@@ -437,7 +439,7 @@ section {
         width: 0.8%;
         left: 235px;
         height: 11px;
-        background-color: #B3B3B3;
+        background-color: #b3b3b3;
       }
       .close-icon {
         top: 261px;
@@ -455,7 +457,8 @@ section {
         font-size: 1rem;
         color: #757575;
 
-        &:focus, &:active {
+        &:focus,
+        &:active {
           background-color: #404040;
         }
 
@@ -479,6 +482,8 @@ section {
 
       img {
         border-radius: 50%;
+        width: 94%;
+        cursor: pointer;
 
         &:hover {
           opacity: 0.4;
