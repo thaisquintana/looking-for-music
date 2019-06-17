@@ -1,10 +1,8 @@
 <template>
   <div class="playlist-album">
     <div class="header">
-      <img :src="imageUrl" :alt="playlists.name">
       <div>
-        <span>Playlist</span>
-        <h1>{{playlists.name}}</h1>
+        <h1>Album</h1>
         <button>PLAY</button>
       </div>
     </div>
@@ -16,24 +14,21 @@
     <table class="songlist" cell-padding="0" cell-spacing="0">
       <thead>
         <tr>
-          <th />
+          <th></th>
           <th>Título</th>
-          <th>Artista</th>
-          <th>Albúm</th>
+
           <th>
-            <img src="../assets/images/calendar-regular.svg" alt="Data de Lançamento" />
+            <img src="../assets/images/clock.svg" alt="Duração" />
           </th>
         </tr>
       </thead>
       <tbody>
-          <tr class="song-item" v-for="playlist in filteredPlaylists" :key="playlist.id">
+          <tr class="song-item" v-for="track in filteredTrack" :key="track.id">
             <td>
               <img src="../assets/images/plus.svg" alt="Adicionar">
             </td>
-            <td>{{playlist.track.name}}</td>
-            <td>{{playlist.track.artists[0].name}}</td>
-            <td>{{playlist.track.album.name}}</td>
-            <td>{{playlist.added_at}}</td>
+            <td>{{track.name}}</td>
+            <td>{{track.duration_ms | duration('minutes')}}:{{track.duration_ms | duration('seconds')}}</td>
           </tr>
         </tbody>
     </table>
@@ -49,7 +44,7 @@ export default {
   data () {
     return {
       moment: moment,
-      playlists: [],
+      tracks: [],
       imageUrl: [],
       search: ''
     }
@@ -57,24 +52,22 @@ export default {
   created () {
     let auth = queryString.parse(window.location.search)
     let accessToken = auth.access_token
-    const user =  this.$route.params.id
-    const api = `https://api.spotify.com/v1/playlists/`
-    const url = api + user
+    const songs =  this.$route.params.id
+    const api = `https://api.spotify.com/v1/albums/`
+    const typeSearch = '/tracks?offset=0&limit=20'
+    const url = api + songs + typeSearch
     axios
       .get(url, {
         headers: { Authorization: 'Bearer ' + accessToken }
       })
       .then(response => {
-        this.playlists = response.data,
-        this.playlistsTracks = response.data.tracks.items
-        this.imageUrl = response.data.images[0].url
-        console.log(this.playlistsTracks)
+        this.tracks = response.data.items
       })
   },
   computed: {
-    filteredPlaylists () {
-      return this.playlistsTracks.filter(playlist => {
-        return playlist.track.name.toLowerCase().match(this.search.toLowerCase())
+    filteredTrack () {
+      return this.tracks.filter(track => {
+        return track.name.toLowerCase().match(this.search.toLowerCase())
       })
     }
   }

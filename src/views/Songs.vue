@@ -6,6 +6,11 @@
         <button>PLAY</button>
       </div>
     </div>
+    <div class="search-filter">
+      <i class="search-icon"></i>
+      <i class="close-icon"></i>
+      <input type="text" v-model="search" placeholder="Filtrar">
+    </div>
     <table class="songlist" cell-padding="0" cell-spacing="0">
       <thead>
         <tr>
@@ -67,14 +72,6 @@ export default {
         return track.track.name.toLowerCase().match(this.search.toLowerCase())
       })
     }
-  },
-  methods: {
-    // millisToMinutesAndSeconds() {
-    //   let minutes = Math.floor(this.tracks.track.duration_ms / 60000)
-    //   let seconds = ((this.tracks.track.duration_ms % 60000) / 1000).toFixed(0)
-    //   return minutes + ':' + (seconds < 10 ? '0' : '') + seconds
-    //   console.log('duracao da musica', minutes + seconds)
-    // }
   }
 }
 </script>

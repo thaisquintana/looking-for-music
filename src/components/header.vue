@@ -1,10 +1,6 @@
 <template>
   <div class="container-no-flex">
-    <div class="search">
-      <img src="../assets/images/search.svg">
-      <input placeholder="Search">
-    </div>
-
+    <Search></Search>
     <div class="user">
       <img :src="imageUrl" :alt="user.name">
       <span>{{user.display_name}}</span>
@@ -16,8 +12,12 @@
 <script>
 import axios from 'axios'
 import queryString from 'query-string'
+import search from '../components/search'
 export default {
   name: 'Artists',
+  components: {
+    Search : search
+  },
   data () {
     return {
       user: '',

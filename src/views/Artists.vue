@@ -8,12 +8,12 @@
     </div>
     <div class="list">
       <div class="artists" v-for="artist in filteredArtist" :key="artist.id">
-        <a :href="artist.href">
+        <router-link :to="{ path: `/albums/${artist.id}`}" class="playlist-title" >
           <img v-bind:src="artist.images[0].url">
-        </a>
-        <a :href="artist.href">
+        </router-link>
+        <router-link :to="{ path: `/albums/${artist.id}`}" class="playlist-title" >
           <strong>{{artist.name}}</strong>
-        </a>
+        </router-link>
         <p>gênero: {{artist.genres[0]}}, {{artist.genres[1]}}</p>
         <p>popularidade: {{artist.popularity}}%</p>
       </div>

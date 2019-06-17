@@ -1,12 +1,17 @@
-import Vue from 'vue'
 import Vuex from 'vuex'
+import Vue from 'vue'
+import user from './modules/user'
+import artists from './modules/artists'
+import search from './modules/search'
 
-import * as user from './modules/user'
-
+// Load Vuex
 Vue.use(Vuex)
 
+// Create store
 export default new Vuex.Store({
   modules: {
-    user
+    user,
+    artists,
+    search
   }
 })

@@ -197,8 +197,18 @@ section {
     height: 219px;
     text-decoration: none;
 
+    a {
+      text-align: center;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #fff;
+    }
+
     img {
       border-radius: 50%;
+      width: 100%;
+      cursor: pointer;
+      height: stretch;
 
       &:hover {
         opacity: 0.4;
@@ -235,7 +245,12 @@ section {
     &:first-child {
       margin: 0;
     }
-
+    a {
+      text-align: center;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #fff;
+    }
     img {
       height: 250px;
 
@@ -262,7 +277,56 @@ section {
 
 .playlist-album {
   margin-top: 30px;
+  .search-filter {
+    margin-top: 37px;
+    margin-bottom: 20px;
+    .search-icon {
+      -o-mask-image: url(../images/search.svg);
+      -moz-mask-image: url(../images/search.svg);
+      -webkit-mask-image: url(../images/search.svg);
+      position: absolute;
+      margin-top: 16px;
+      width: 6.8%;
+      margin-left: 14px;
+      height: 17px;
+      background-color: #b3b3b3;
+      mask-repeat: no-repeat;
+    }
+    .close-icon {
+      -o-mask-image: url(../images/times-line.svg);
+      -moz-mask-image: url(../images/times-line.svg);
+      -webkit-mask-image: url(../images/times-line.svg);
+      position: absolute;
+      margin-top: 11px;
+      width: 7.8%;
+      right: 0;
+      height: 20px;
+      background-color: #181818;
+      mask-repeat: no-repeat;
+    }
+    input {
+      border-radius: 4px;
+      border: none;
+      padding: 12px 35px;
+      background-color: #181818;
+      width: 100%;
+      font-size: 1rem;
+      color: #757575;
 
+      &:focus,
+      &:active {
+        background-color: #404040;
+      }
+
+      &:hover {
+        color: #fff;
+      }
+
+      ::placeholder {
+        color: #757575;
+      }
+    }
+  }
   .header {
     display: flex;
     align-items: center;
@@ -308,6 +372,7 @@ section {
       }
     }
   }
+
   .songlist {
     width: 100%;
     text-align: left;
@@ -344,10 +409,6 @@ section {
           text-align: right;
         }
 
-        &:hover {
-          background: #282828;
-        }
-
         &:last-child {
           text-align: right;
         }
@@ -374,7 +435,7 @@ section {
   }
   aside {
     height: 100%;
-    width: 200px;
+    width: 216px;
     background-color: #121212;
     color: #b3b3b3;
     display: flex;
@@ -383,7 +444,14 @@ section {
 
     .main-navegation {
       padding: 25px;
-
+      span {
+        font-size: 0.6875rem;
+        text-transform: uppercase;
+        line-height: 22px;
+        letter-spacing: 1.11px;
+        font-weight: 300;
+        cursor: default;
+      }
       ul {
         list-style: none;
         margin-top: 25px;
@@ -407,14 +475,6 @@ section {
               color: #fff;
             }
           }
-          span {
-            font-size: 0.6875rem;
-            text-transform: uppercase;
-            line-height: 22px;
-            letter-spacing: 1.11px;
-            font-weight: 300;
-            cursor: default;
-          }
         }
       }
       .main-libary {
@@ -431,7 +491,7 @@ section {
         }
       }
       .playlist-title {
-        font-weight: 300;
+        font-weight: 500;
         cursor: pointer;
       }
     }
@@ -467,7 +527,7 @@ section {
 
     .list {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 255px));
+      grid-template-columns: repeat(auto-fit, minmax(210px, 250px));
       grid-auto-rows: 388px;
       margin: 50px 0 0 0;
     }
@@ -516,17 +576,9 @@ section {
       width: 219px;
       height: 219px;
       text-decoration: none;
-      a {
-        text-align: center;
-        margin-top: 20px;
-        text-decoration: none;
-        color: #fff;
-      }
+
       img {
-        border-radius: 50%;
         width: 94%;
-        cursor: pointer;
-        height: stretch;
 
         &:hover {
           opacity: 0.4;
@@ -554,12 +606,7 @@ section {
       color: #fff;
       width: 250px;
       text-decoration: none;
-      a {
-        text-align: center;
-        margin-top: 20px;
-        text-decoration: none;
-        color: #fff;
-      }
+
       img {
         width: 94%;
         cursor: pointer;

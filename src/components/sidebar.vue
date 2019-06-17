@@ -46,11 +46,9 @@
           </li>
         </ul>
         <ul>
-          <li>
-            <span>Playlists</span>
-          </li>
-          <li>
-            <a class="playlist-title">Blink 182</a>
+          <span>Playlists</span>
+          <li v-for="playlist in playlists" :key="playlist.id">
+            <router-link :to="{ path: `/playlists/${playlist.id}`}" class="playlist-title" >{{playlist.name}}</router-link>
           </li>
         </ul>
       </div>
@@ -63,12 +61,36 @@
       <router-link :to="{ path: '/songs' }">Músicas</router-link>
       <router-link :to="{ path: '/albums' }">Albúns</router-link>
       <router-link :to="{ path: '/' }">Artistas</router-link>
+      <router-link :to="{ path: '/playlists' }">Playlists</router-link>
     </section>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+import queryString from 'query-string'
+
 export default {
-  name: 'sidebar'
+  name: 'sidebar',
+  data () {
+    return {
+      playlists: []
+    }
+  },
+
+  created () {
+    let auth = queryString.parse(window.location.search)
+    let accessToken = auth.access_token
+    const api = 'https://api.spotify.com/v1/me/'
+    const typeSearch = 'playlists'
+    const url = api + typeSearch
+    axios
+      .get(url, {
+        headers: { Authorization: 'Bearer ' + accessToken }
+      })
+      .then(response => {
+        this.playlists = response.data.items
+      })
+  }
 }
 </script>
