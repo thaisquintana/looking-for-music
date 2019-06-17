@@ -5,11 +5,13 @@ import VueSlider from 'vue-slider-component'
 import App from './App'
 import router from './router'
 import store from './store/store'
+import VueMoment from 'vue-moment'
 
 import 'vue-slider-component/theme/default.css'
 import './assets/styles/main.scss'
 
 Vue.component('VueSlider', VueSlider)
+Vue.use(VueMoment)
 
 Vue.config.productionTip = false
 

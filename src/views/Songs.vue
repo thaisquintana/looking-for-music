@@ -1,54 +1,80 @@
 <template>
-  <div class="broswer-playlists">
-    <h1 class="title">Músicas</h1>
-    <div class="search-filter">
-      <i class="search-icon"></i>
-      <i class="close-icon"></i>
-      <form ref="form" @keyup.enter="onSubmit" @submit.prevent="onSubmit">
-        <input type="text" name="search" placeholder="Filtrar">
-      </form>
-    </div>
-    <div class="list-album-mobile list">
-      <div class="albums" v-for="track in tracks" :key="track.id">
-        <img v-bind:src="track.album.images[0].url">
-        <strong>{{track.name}}</strong>
-        <p>Artistas: {{track.artists[0].name}}</p>
-        <p>Duração: {{track.duration_ms}}</p>
+  <div class="playlist-album">
+    <div class="header">
+      <div>
+        <h1>Músicas</h1>
+        <button>PLAY</button>
       </div>
     </div>
+    <table class="songlist" cell-padding="0" cell-spacing="0">
+      <thead>
+        <tr>
+          <th/>
+          <th>Título</th>
+          <th>Artista</th>
+          <th>Albúm</th>
+          <th>
+            <img src="../assets/images/clock.svg" alt="Duração">
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="song-item" v-for="track in filteredTracks" :key="track.track.id">
+          <td>
+            <img src="../assets/images/plus.svg" alt="Adicionar">
+          </td>
+          <td>{{track.track.name}}</td>
+          <td>{{track.track.artists[0].name}}</td>
+          <td>{{track.track.album.name}}</td>
+          <td>{{track.track.duration_ms | duration('minutes')}}:{{track.track.duration_ms | duration('seconds')}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
 <script>
-import axios from "axios";
-import queryString from "query-string";
+import axios from 'axios'
+import queryString from 'query-string'
+import moment from 'vue-moment'
+
 export default {
-  name: "Songs",
-  data() {
+  name: 'Songs',
+  data () {
     return {
-      tracks: []
-    };
+      moment: moment,
+      tracks: [],
+      search: ''
+    }
+  },
+  created () {
+    let auth = queryString.parse(window.location.search)
+    let accessToken = auth.access_token
+    const api = 'https://api.spotify.com/v1/me/'
+    const typeSearch = 'tracks?limit=20'
+    const url = api + typeSearch
+    axios
+      .get(url, {
+        headers: { Authorization: 'Bearer ' + accessToken }
+      })
+      .then(response => {
+        this.tracks = response.data.items
+      })
+  },
+  computed: {
+    filteredTracks () {
+      return this.tracks.filter(track => {
+        return track.track.name.toLowerCase().match(this.search.toLowerCase())
+      })
+    }
   },
   methods: {
-    onSubmit(e) {
-      e.preventDefault();
-      let auth = queryString.parse(window.location.search);
-      let accessToken = auth.access_token;
-      let searched = this.$refs.form.search.value;
-      const api = "https://api.spotify.com/v1/search?q=";
-      const typeSearch = "&type=track&market=BR&offset=0&limit=19";
-      const url = api + searched + typeSearch;
-      axios
-        .get(url, {
-          headers: { Authorization: "Bearer " + accessToken }
-        })
-        .then(response => {
-          this.tracks = response.data.tracks.items;
-        })
-        .catch(e => {
-          this.errors.push(e);
-        });
-    }
+    // millisToMinutesAndSeconds() {
+    //   let minutes = Math.floor(this.tracks.track.duration_ms / 60000)
+    //   let seconds = ((this.tracks.track.duration_ms % 60000) / 1000).toFixed(0)
+    //   return minutes + ':' + (seconds < 10 ? '0' : '') + seconds
+    //   console.log('duracao da musica', minutes + seconds)
+    // }
   }
-};
+}
 </script>
