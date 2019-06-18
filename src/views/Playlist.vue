@@ -57,7 +57,7 @@ export default {
   created () {
     let auth = queryString.parse(window.location.search)
     let accessToken = auth.access_token
-    const user =  this.$route.params.id
+    const user = this.$route.params.id
     const api = `https://api.spotify.com/v1/playlists/`
     const url = api + user
     axios
@@ -65,7 +65,7 @@ export default {
         headers: { Authorization: 'Bearer ' + accessToken }
       })
       .then(response => {
-        this.playlists = response.data,
+        this.playlists = response.data
         this.playlistsTracks = response.data.tracks.items
         this.imageUrl = response.data.images[0].url
         console.log(this.playlistsTracks)

@@ -16,7 +16,7 @@ import search from '../components/search'
 export default {
   name: 'Artists',
   components: {
-    Search : search
+    Search: search
   },
   data () {
     return {

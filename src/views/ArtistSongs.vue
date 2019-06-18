@@ -16,7 +16,6 @@
         <tr>
           <th></th>
           <th>Título</th>
-
           <th>
             <img src="../assets/images/clock.svg" alt="Duração" />
           </th>
@@ -52,7 +51,7 @@ export default {
   created () {
     let auth = queryString.parse(window.location.search)
     let accessToken = auth.access_token
-    const songs =  this.$route.params.id
+    const songs = this.$route.params.id
     const api = `https://api.spotify.com/v1/albums/`
     const typeSearch = '/tracks?offset=0&limit=20'
     const url = api + songs + typeSearch

@@ -35,11 +35,11 @@ export default {
   created () {
     let auth = queryString.parse(window.location.search)
     let accessToken = auth.access_token
-    const artist =  this.$route.params.id
+    const artist = this.$route.params.id
     console.log(artist)
     const api = 'https://api.spotify.com/v1/artists/'
     const typeSearch = '/albums?limit=5'
-    const url = api + artist +typeSearch
+    const url = api + artist + typeSearch
     axios
       .get(url, {
         headers: { Authorization: 'Bearer ' + accessToken }
