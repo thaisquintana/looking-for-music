@@ -22,7 +22,7 @@ export default {
     },
     onSubmit (e) {
       e.preventDefault()
-        this.$router.push('/searched')
+        this.$router.push({ path: '/searched' })
     }
   }
 }
