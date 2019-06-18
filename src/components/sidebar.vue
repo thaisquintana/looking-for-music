@@ -61,7 +61,6 @@
       <router-link :to="{ path: '/songs' }">Músicas</router-link>
       <router-link :to="{ path: '/albums' }">Albúns</router-link>
       <router-link :to="{ path: '/' }">Artistas</router-link>
-      <router-link :to="{ path: '/playlists' }">Playlists</router-link>
     </section>
   </div>
 </template>
