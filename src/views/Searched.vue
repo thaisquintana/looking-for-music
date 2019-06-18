@@ -43,7 +43,6 @@
 <script>
 import axios from 'axios'
 import queryString from 'query-string'
-import moment from 'vue-moment'
 import { bus } from '../main'
 
 export default {
@@ -73,8 +72,8 @@ export default {
         const typeSearch = '&type=artist%2Ctrack%2Calbum&market=US&offset=0&limit=15'
         const url = api + this.searched + typeSearch
         axios.get(url, {
-            headers: { Authorization: 'Bearer ' + accessToken }
-          })
+          headers: { Authorization: 'Bearer ' + accessToken }
+        })
           .then(response => {
             this.tracks = response.data.tracks.items
             this.artists = response.data.artists.items
